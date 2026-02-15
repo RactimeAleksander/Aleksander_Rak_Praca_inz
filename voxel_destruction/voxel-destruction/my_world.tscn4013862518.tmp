@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://sycx42fer60s"]
+
+[ext_resource type="Script" uid="uid://bc1bs3u7mvw7v" path="res://my_world.gd" id="1_tp7eq"]
+[ext_resource type="PackedScene" uid="uid://buayxkknse3sa" path="res://player.tscn" id="2_ms5cr"]
+[ext_resource type="PackedScene" uid="uid://c8us5ssun0hbr" path="res://pause_menu.tscn" id="3_cery3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ms5cr"]
+albedo_color = Color(1, 0, 0.8862745, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_1u75a"]
+
+[sub_resource type="MultiMesh" id="MultiMesh_asled"]
+transform_format = 1
+mesh = SubResource("BoxMesh_1u75a")
+
+[node name="My_world" type="Node3D"]
+script = ExtResource("1_tp7eq")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.7890841, -0.26639035, 0.55351824, 0, 0.90107703, 0.4336591, -0.6142852, -0.34219348, 0.71102554, 4.117, 3.533, 5.25)
+
+[node name="DefaultCube" type="CSGBox3D" parent="."]
+use_collision = true
+material = SubResource("StandardMaterial3D_ms5cr")
+
+[node name="Player" parent="." instance=ExtResource("2_ms5cr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5675516, 22.183115, 4.44318)
+
+[node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="."]
+multimesh = SubResource("MultiMesh_asled")
+
+[node name="PauseMenu" parent="." instance=ExtResource("3_cery3")]
